@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://dlu808pd1gq44"]
+[gd_scene load_steps=12 format=4 uid="uid://dlu808pd1gq44"]
 
 [ext_resource type="Texture2D" uid="uid://belstywqwhmyo" path="res://Assets/Tilemap/tilemap-backgrounds.png" id="1_3e4oh"]
 [ext_resource type="Texture2D" uid="uid://06hrnv3vu4q1" path="res://Assets/Tilemap/tilemap.png" id="2_s0oxo"]
 [ext_resource type="PackedScene" uid="uid://dwuo8tvkms8hd" path="res://Scenes/player.tscn" id="4_e7h3x"]
+[ext_resource type="PackedScene" uid="uid://hlvx7vpch4qk" path="res://Scenes/kill_zone.tscn" id="4_ulq6x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ulq6x"]
 texture = ExtResource("1_3e4oh")
@@ -350,6 +351,11 @@ physics_layer_1/collision_layer = 2
 physics_layer_1/physics_material = SubResource("PhysicsMaterial_xgn76")
 sources/0 = SubResource("TileSetAtlasSource_xpkg1")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7h3x"]
+distance = -211.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulq6x"]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="background" type="TileMapLayer" parent="."]
@@ -367,3 +373,14 @@ position = Vector2(-89, -17)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(157, -18)
+
+[node name="Kill_zone" parent="." instance=ExtResource("4_ulq6x")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill_zone"]
+shape = SubResource("WorldBoundaryShape2D_e7h3x")
+
+[node name="Kill_zone2" parent="." instance=ExtResource("4_ulq6x")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill_zone2"]
+position = Vector2(-124, -11)
+shape = SubResource("RectangleShape2D_ulq6x")
