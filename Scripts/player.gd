@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -200.0
+@onready var last_position = position
 
 
 func _physics_process(delta: float) -> void:
@@ -23,3 +24,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+	if(is_on_floor()):
+		# Check if the player is on the floor and has moved.
+		if position != last_position:
+			# If the player has moved, reset the last position to the current position.
+			last_position = position
