@@ -5,7 +5,7 @@ var _body: CharacterBody2D
 
 func _on_timer_timeout() -> void:
 	print("Timer timeout")
-	ResetBodyPosition(_body, 10, 10)
+	ResetBodyPosition(_body)
 	pass # Replace with function body.
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
@@ -18,8 +18,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		$Timer.start()
 	pass # Replace with function body.
 
-func ResetBodyPosition(body:CharacterBody2D, x:float,  y:float) -> void:
-	print("Resetting body position to: ", x, y)
+func ResetBodyPosition(body:CharacterBody2D) -> void:
 	# Reset the position of the body to the specified coordinates.
 	if(body.is_in_group("Player")):
 		print("Player detected")
